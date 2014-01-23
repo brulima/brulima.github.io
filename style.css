@@ -200,9 +200,23 @@ nav li:hover a{
 }
 .article p.coments {
 	font-size:15px;
-	padding-left:60px;
+	padding-left:10%;
 	color:#666666;
 	font-style: italic;
+}
+.article ul li {
+	list-style-type: none;
+}
+#footer {
+	font: 11px tahoma;
+	text-align: center;
+	color: rgb(80, 80, 80);
+}
+#footer a {
+	color: #F9F;
+}
+#footer a:link {
+	text-decoration: none;
 }
 @media (max-width: 664px) {
 	#site-title-a {
@@ -232,6 +246,9 @@ nav li:hover a{
 	}
 	#sep {
 		margin-left: 46%;
+	}
+	.author-date {
+		font-size: 10px;
 	}
 }
 @media (max-width: 550px) {
