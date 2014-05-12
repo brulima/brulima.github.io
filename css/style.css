@@ -1,0 +1,65 @@
+@font-face {
+	font-family: logoFont;
+	src: url(../fonts/logoFont.ttf);
+}
+body {
+	background-image: linear-gradient(to bottom, rgb(255, 42, 79), rgb(255, 143, 0));
+	margin: 0;
+	text-align: center;
+	font-size: 1.9em;
+	font-family: Helvetica;
+	color: gray;
+}
+#content {
+	width: 86%;
+	text-align: center;
+	margin-left: 5%;
+	margin-top: 4%;
+	margin-bottom: 3%;
+	background-color: rgb(246, 243, 243);
+	background-image: linear-gradient(to bottom, rgb(255, 255, 255), rgb(240, 240, 240));
+	box-shadow: rgb(82, 0, 0) 0px 0px 20px;
+	padding: 2%;
+	padding-bottom: 1%;
+}
+header h1{
+	font-family: 'logoFont';
+	font-size: 2em;
+	margin:0;
+	color: rgb(255, 42, 79);
+}
+header img{
+	border-radius: 100%;
+	width: 20%;
+}
+article {
+	display: inline-block;
+	width: 90%;
+}
+article h1 {
+	margin: 5%;
+	margin-top: 0;
+	margin-bottom: 4%;
+	font-weight: lighter;
+	text-align: center;
+}
+article h2{
+	font-size: 0.7em;
+	font-weight: lighter;
+	margin-bottom: 1%;
+}
+p {
+	margin: 0.5%;
+	font-size: 0.5em;
+}
+#content section {
+	margin: 2%;
+	width: 46%;
+	float: left;
+	text-align: left;
+	display: inline-table;
+}
+footer p {
+	margin: 0;
+	font-size: 0.4em;
+}
