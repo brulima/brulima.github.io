@@ -79,8 +79,14 @@ p {
 #content section.portfolio section {
 	width: 20%;
 	padding: 2%;
-	background-image: linear-gradient(to bottom, rgb(235, 235, 235), rgb(214, 214, 214));
 	box-shadow: black 1px 1px 4px;
+	background-color: white;
+	background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.15));
+	transition: background-color 0.3s linear;
+	
+}
+#content section.portfolio section:hover {
+	background-color: rgb(238, 238, 238);
 }
 .portfolio a {
 	color: gray;
@@ -92,13 +98,17 @@ footer p {
 	margin: 0;
 	font-size: 0.4em;
 }
-@media (max-width: 1000px) {
+@media (max-width: 1180px) {
 	#content section.portfolio section {
-		width: 80%;
+		width: 35%;
 		padding: 4%;
 	}
 }
 @media (max-width: 720px) {
+	#content section.portfolio section {
+		width: 80%;
+		padding: 4%;
+	}
 	#content section {
 		margin: 4%;
 		width: 92%;
