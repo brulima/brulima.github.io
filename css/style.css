@@ -93,13 +93,15 @@ footer p {
 	margin: 0;
 	font-size: 0.4em;
 }
+@media (max-width: 1000px) {
+	#content section.portfolio section {
+		width: 80%;
+		padding: 4%;
+	}
+}
 @media (max-width: 720px) {
 	#content section {
 		margin: 4%;
 		width: 92%;
-	}
-	#content section.portfolio section {
-		width: 80%;
-		padding: 4%;
 	}
 }
