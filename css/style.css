@@ -79,9 +79,8 @@ p {
 #content section.portfolio section {
 	width: 20%;
 	padding: 2%;
-	border-radius: 5%;
 	background-image: linear-gradient(to bottom, rgb(235, 235, 235), rgb(214, 214, 214));
-	box-shadow: black 0px 0px 6px;
+	box-shadow: black 1px 1px 4px;
 }
 .portfolio a {
 	color: gray;
