@@ -57,6 +57,38 @@ p {
 	text-align: left;
 	display: inline-table;
 }
+.portfolio h2 {
+	text-align: center;
+	margin: 0;
+	font-weight: lighter;
+	font-size: 1.3em;
+}
+.portfolio h3 {
+	font-size: 1em;
+	font-weight: lighter;
+	text-align: center;
+	margin: 0;
+	background-color: transparent;
+}
+.portfolio img {
+	width: 100%;
+}
+#content section.portfolio {
+	width: 100%;
+}
+#content section.portfolio section {
+	width: 20%;
+	padding: 2%;
+	border-radius: 5%;
+	background-image: linear-gradient(to bottom, rgb(235, 235, 235), rgb(214, 214, 214));
+	box-shadow: black 0px 0px 6px;
+}
+.portfolio a {
+	color: gray;
+}
+.portfolio a:link {
+	text-decoration: none;
+}
 footer p {
 	margin: 0;
 	font-size: 0.4em;
