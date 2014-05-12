@@ -93,7 +93,7 @@ footer p {
 	margin: 0;
 	font-size: 0.4em;
 }
-@media (max-width: 664px) {
+@media (max-width: 720px) {
 	#content section {
 		margin: 4%;
 		width: 92%;
