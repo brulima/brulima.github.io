@@ -28,7 +28,7 @@ body {
 }
 header h1{
 	font-family: 'Segan', sans-serif;
-	font-size: 3em;
+	font-size: 3.5em;
 	margin:0;
 	color: rgb(255, 42, 79);
 	font-weight: lighter;
@@ -36,6 +36,7 @@ header h1{
 }
 header h2 {
 	text-align: right;
+	font-size: 1.6em;	
 }
 header img{
 	border-radius: 100%;
@@ -67,27 +68,45 @@ article h1, header h2 {
 	text-shadow: rgb(165, 165, 165) 1px 1px 2px;
 }
 article h2{
-	font-size: 0.7em;
+	font-size: 1.3em;
 	font-weight: lighter;
-	margin-bottom: 1%;
+	margin-bottom: 2%;
+	margin-top: 7%;
 	text-shadow: rgb(189, 189, 189) 1px 1px 1px;
 }
 p {
-	margin: 2%;
-	font-size: 0.5em;
-	text-indent: 6%;
+	font-size: 0.8em;
+	margin: 0px;
+	margin-top: 0.7%;
+	letter-spacing: 1px;
+	line-height: 120%;
+}
+.curso p {
+	margin: 0px;
+}
+.curso {
+	margin-top: 2%;
+	margin-left: 0;
+}
+.comp {
+	font-size: 1em;
 }
 #content section {
 	margin: 2%;
-	width: 46%;
-	float: left;
 	text-align: left;
-	display: inline-table;
+}
+#content .portfolio {
+	margin-left: 14%;
 }
 .portfolio h1 {
+	margin-bottom: 4%;
 	margin-top: 4%;
 	letter-spacing: 2px;
 	font-size: 1.3em;
+	text-align: left;
+}
+article section div {
+	margin-left: 8%;
 }
 .portfolio img {
 	width: 100%;
@@ -102,6 +121,7 @@ p {
 	background-color: white;
 	background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.15));
 	transition: background-color 0.3s linear;
+	margin:0;
 
 }
 #content article.portfolio section:hover {
@@ -116,6 +136,7 @@ p {
 footer p {
 	margin: 0;
 	font-size: 0.4em;
+	margin-top: 5%;
 }
 @media (max-width: 1180px) {
 	#content article.portfolio section {
