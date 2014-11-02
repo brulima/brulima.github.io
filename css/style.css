@@ -178,23 +178,9 @@ footer p {
 	article {
 		padding-left: 3%
 	}
-	p {
-		font-size: 0.5em;
-	}
 	#content 	.portfolio section {
 		width: 100%;
 		padding: 4%;
-	}
-}
-@media (max-width: 440px) {
-	.comp {
-		font-size: 0.6em;
-	}
-	p {
-		font-size: 0.5em;
-	}
-	article h2{
-		font-size: 0.8em;
 	}
 }
 @media (max-width: 400px) {
