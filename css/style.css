@@ -176,7 +176,7 @@ footer p {
 }
 @media (max-width: 510px) {
 	article {
-		padding-left: 1%
+		padding-left: 3%
 	}
 	p {
 		font-size: 0.5em;
@@ -187,14 +187,11 @@ footer p {
 	}
 }
 @media (max-width: 440px) {
-	article {
-		padding-left: 0%
-	}
 	.comp {
-		font-size: 0.5em;
+		font-size: 0.6em;
 	}
 	p {
-		font-size: 0.4em;
+		font-size: 0.5em;
 	}
 	article h2{
 		font-size: 0.8em;
