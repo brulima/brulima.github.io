@@ -2,6 +2,9 @@
 	font-family: Segan;
 	src: url(../fonts/Segan.ttf);
 }
+.vcard {
+	display: none;
+}
 body {
 	background-image: linear-gradient(to bottom, rgb(255, 42, 79), rgb(255, 143, 0));
 	margin: 0;
