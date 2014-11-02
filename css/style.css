@@ -109,14 +109,22 @@ p {
 	width: 100%;
 }
 #content .portfolio section {
-	width: 20%;
 	padding: 2%;
 	box-shadow: black 1px 1px 4px;
 	background-color: white;
 	background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.15));
 	transition: background-color 0.3s linear;
 	margin:0;
+	height: 100%;
 
+}
+.portfolio-content {
+	display: inline-table;
+}
+.portfolio-content a {
+	width: 25%;
+	height: 300px;
+	float: left;
 }
 #content .portfolio section:hover {
 	background-color: rgb(238, 238, 238);
