@@ -115,7 +115,7 @@ p {
 	background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.15));
 	transition: background-color 0.3s linear;
 	margin:0;
-	height: 100%;
+	min-height: 300px;
 
 }
 .portfolio-content {
@@ -123,7 +123,7 @@ p {
 }
 .portfolio-content a {
 	width: 25%;
-	height: 300px;
+	min-height: 300px;
 	float: left;
 }
 #content .portfolio section:hover {
@@ -142,9 +142,12 @@ footer p {
 	text-align: center;
 }
 @media (max-width: 1180px) {
+	#content .portfolio a {
+		width: 50%;
+		min-height: 360px;
+	}
 	#content .portfolio section {
-		width: 35%;
-		padding: 4%;
+		min-height: 360px;
 	}
 	article h2{
 		font-size: 1.1em;
@@ -157,9 +160,8 @@ footer p {
 	}
 }
 @media (max-width: 720px) {
-	#content .portfolio section {
-		width: 90%;
-		padding: 4%;
+	#content .portfolio a {
+		width: 100%;
 	}
 	header h1 {
 		font-size: 2em;
@@ -188,10 +190,6 @@ footer p {
 @media (max-width: 510px) {
 	article {
 		padding-left: 3%
-	}
-	#content 	.portfolio section {
-		width: 94%;
-		padding: 4%;
 	}
 }
 @media (max-width: 400px) {
