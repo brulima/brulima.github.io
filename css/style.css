@@ -160,7 +160,6 @@ footer p {
 @media (max-width: 1180px) {
 	#content .portfolio li {
 		width: 50%;
-		height: 100px;
 	}
 	article h2{
 		font-size: 1.1em;
