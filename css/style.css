@@ -16,16 +16,12 @@ a:link {
 	text-decoration: none;
 }
 #content {
-	width: 83%;
-	margin-left: 5%;
-	margin-top: 4%;
-	margin-bottom: 3%;
+	width: 80%;
+	margin: 4% 5% 3% 5%;
 	background-color: rgb(246, 243, 243);
 	background-image: linear-gradient(to bottom, rgb(255, 255, 255), rgb(240, 240, 240));
 	box-shadow: rgb(82, 0, 0) 0px 0px 20px;
-	padding: 2%;
-	padding-left: 5%;
-	padding-bottom: 1%;
+	padding: 2% 5% 1% 5%;
 }
 header h1{
 	font-family: 'Segan', sans-serif;
