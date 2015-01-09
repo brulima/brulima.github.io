@@ -26,5 +26,6 @@ body {
 	-webkit-animation: konami 1s infinite;
 	background-repeat: no-repeat;
 	background-size: 40%;
+	background-attachment: fixed;
 	height: 4000px;
 }
