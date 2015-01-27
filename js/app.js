@@ -20,7 +20,7 @@ var now = new Date(),
 
 for (var i = as.length - 1; i >= 0; i--) {
 	as[i].addEventListener("mousedown", function(){
-		ga('send', 'event', this.title.split("|")[0], this.title.split("|")[0], 'Clique');
+		ga('send', 'event', this.title.split("|")[0], this.title.split("|")[1], 'Clique');
 		notBounce();
 	});
 }
@@ -28,7 +28,7 @@ for (var i = as.length - 1; i >= 0; i--) {
 document.getElementById("email").addEventListener("mousedown", function(){
 	ga('send', 'event', 'Contato', 'Email', 'Clique');
 	notBounce();
-})
+});
 
 setTimeout(function(){
   	document.cookie = 'bounce=false;expires='+ now.toGMTString() + ';path=/';
