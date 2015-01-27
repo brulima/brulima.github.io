@@ -34,4 +34,5 @@ document.getElementById("email").addEventListener("mousedown", function(){
 setTimeout(function(){
   	document.cookie = 'bounce=false;expires='+ now.toGMTString() + ';path=/';
   	notBounce();
+  	ga('send', 'event', 'Tempo', '6', 'Segundos');
 }, 6000);
