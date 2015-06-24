@@ -203,7 +203,7 @@ footer p {
         border: 1px solid rgb(40, 40, 40);
     }
     #content {
-        height: 100%;
+        height: auto;
     }
     .fadeInUp {
       -webkit-animation: none;
@@ -213,6 +213,15 @@ footer p {
     .fadeOutUp {
       -webkit-animation: none;
       animation: none;
+    }
+    h2, h3 {
+        margin-top: 15%;
+    }
+    h4 {
+        margin-top: 5%;
+    }
+    #experience-section article, #education-section article {
+        float: none;
     }
 }
 @media (max-width: 1110px) {
@@ -335,3 +344,4 @@ footer p {
     transform: translate3d(0, -100%, 0);
   }
 }
+
