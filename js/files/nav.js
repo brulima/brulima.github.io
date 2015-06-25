@@ -1,11 +1,10 @@
 (function nav () {
-    var getElement = document.getElementById;
-    var getAll = document.getElementsByClassName;
-    var menu = getElement('menu-header');
-    var name = getElement('name');
-    var content = getElement('content');
-    var menuItens = getAll('menu-item');
-    var activeContent = 'header';
+    var doc = document;
+    var menu = doc.getElementById('menu-header');
+    var name = doc.getElementById('name');
+    var content = doc.getElementById('content');
+    var menuItens = doc.getElementsByClassName('menu-item');
+    var activeContent = 'header-section';
     var firstClick = true;
     var topElements = {
         'menu': menu,
@@ -22,15 +21,15 @@
             firstClick = false;
         }
 
-        if (newContent === 'header' && !firstClick) {
+        if (newContent === 'header-section' && !firstClick) {
             setFirstPage();
             firstClick = true;
         }
 
         activeContent = newContent;
 
-        newContent = getElement(newContent);
-        oldContent = getElement(oldContent);
+        newContent = doc.getElementById(newContent);
+        oldContent = doc.getElementById(oldContent);
 
         oldContent.classList.add('fadeOutUp');
 
@@ -49,23 +48,27 @@
     };
 
     var setContentPage = function () {
-        for (var i = 0; i < topElements.length; i++) {
-            topElements[i].classList.add('fadeInUp');
-            topElements[i].classList.add('top-' + topElements[i].id.split('-')[0]);
-            content.appendChild(topElements[i]);
+        for (var el in topElements) {
+            if (topElements.hasOwnProperty(el)) {
+                var element = topElements[el];
+
+                element.classList.add('fadeInUp');
+                element.classList.add('top-' + el);
+
+                content.appendChild(element);
+            }
         }
     };
 
     var setFirstPage = function () {
         for (var el in topElements) {
             if (topElements.hasOwnProperty(el)) {
-                var container = getElement(el + '-container');
+                var container = doc.getElementById(el + '-container');
                 var element = topElements[el];
 
                 element.classList.remove('fadeInUp');
                 element.classList.remove('top-' + el);
 
-                content.removeChild(element);
                 container.appendChild(element);
             }
         }
@@ -82,7 +85,7 @@
     }
 
     setTimeout(function () {
-        var header = getElement('header-section');
+        var header = doc.getElementById('header-section');
         header.classList.remove('fadeInUp');
     }, 2000);
 
