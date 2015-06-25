@@ -1,4 +1,4 @@
-(function () {
+(function ga () {
     var isBounce = function () {
         if (typeof localStorage !== 'object' || !localStorage.bounce) {
             return true;
@@ -27,7 +27,7 @@
     };
 
     var loadGoogleAnalytics = function () {
-        (function(i,s,o,g,r,a,m){i.GoogleAnalyticsObject=r;i[r]=i[r]||function(){
+        (function googleAnalyticsAutoExecutable(i,s,o,g,r,a,m){i.GoogleAnalyticsObject=r;i[r]=i[r]||function googleAnalyticsGAFunction(){
         (i[r].q=i[r].q||[]).push(arguments);};i[r].l=1*new Date();a=s.createElement(o);
         m=doc.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m);
         })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
@@ -110,14 +110,14 @@
 
         oldContent.classList.add('fadeOutUp');
 
-        setTimeout(function () {
+        setTimeout(function setTimeOutChangeSection () {
             oldContent.classList.remove('fadeOutUp');
             oldContent.classList.add('hidden-element');
 
             newContent.classList.remove('hidden-element');
             newContent.classList.add('fadeInUp');
 
-            setTimeout(function () {
+            setTimeout(function setTimeOutremoveFadeInClassFromNewSecion() {
                 newContent.classList.remove('fadeInUp');
             }, 1000);
 
@@ -127,11 +127,11 @@
     var setContentPage = function () {
         for (var el in topElements) {
             if (topElements.hasOwnProperty(el)) {
-                var container = doc.getElementById(el + '-container');
                 var element = topElements[el];
 
                 element.classList.add('fadeInUp');
                 element.classList.add('top-' + el);
+
                 content.appendChild(element);
             }
         }
@@ -146,23 +146,24 @@
                 element.classList.remove('fadeInUp');
                 element.classList.remove('top-' + el);
 
-                content.removeChild(element);
                 container.appendChild(element);
             }
         }
     };
 
+    var fireSectionChange = function (event) {
+        var target = event.target;
+        var newContent = target.getAttribute('data-menu');
+
+        sectionChange(activeContent, newContent);
+    };
+
     for (var i = 0; i < menuItens.length; i++) {
         var menuItem = menuItens[i];
-
-        menuItem.addEventListener('click', function() {
-            var newContent = this.getAttribute('data-menu');
-
-            sectionChange(activeContent, newContent);
-        });
+        menuItem.addEventListener('click', fireSectionChange);
     }
 
-    setTimeout(function () {
+    setTimeout(function setTimeOutRemoveFadeInClassFromHeader() {
         var header = doc.getElementById('header-section');
         header.classList.remove('fadeInUp');
     }, 2000);

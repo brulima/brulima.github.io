@@ -33,14 +33,14 @@
 
         oldContent.classList.add('fadeOutUp');
 
-        setTimeout(function () {
+        setTimeout(function setTimeOutChangeSection () {
             oldContent.classList.remove('fadeOutUp');
             oldContent.classList.add('hidden-element');
 
             newContent.classList.remove('hidden-element');
             newContent.classList.add('fadeInUp');
 
-            setTimeout(function () {
+            setTimeout(function setTimeOutremoveFadeInClassFromNewSecion() {
                 newContent.classList.remove('fadeInUp');
             }, 1000);
 
@@ -74,17 +74,19 @@
         }
     };
 
+    var fireSectionChange = function (event) {
+        var target = event.target;
+        var newContent = target.getAttribute('data-menu');
+
+        sectionChange(activeContent, newContent);
+    };
+
     for (var i = 0; i < menuItens.length; i++) {
         var menuItem = menuItens[i];
-
-        menuItem.addEventListener('click', function() {
-            var newContent = this.getAttribute('data-menu');
-
-            sectionChange(activeContent, newContent);
-        });
+        menuItem.addEventListener('click', fireSectionChange);
     }
 
-    setTimeout(function () {
+    setTimeout(function setTimeOutRemoveFadeInClassFromHeader() {
         var header = doc.getElementById('header-section');
         header.classList.remove('fadeInUp');
     }, 2000);
