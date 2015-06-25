@@ -26,18 +26,12 @@
         return now.toGMTString();
     };
 
-    var loadGoogleAnalytics = function () {
-        (function googleAnalyticsAutoExecutable(i,s,o,g,r,a,m){i.GoogleAnalyticsObject=r;i[r]=i[r]||function googleAnalyticsGAFunction(){
+    var loadGoogleAnalytics = function (i,s,o,g,r,a,m) {
+        i.GoogleAnalyticsObject=r;i[r]=i[r]||function (){
         (i[r].q=i[r].q||[]).push(arguments);};i[r].l=1*new Date();a=s.createElement(o);
         m=doc.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m);
-        })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
 
-        ga('create', 'UA-50934024-1', 'brulima.github.io');
-        ga('require', 'displayfeatures');
-        ga('set', 'dimension1', 'Rejeitado');
-        ga('send', 'pageview');
-
-        trackElements();
+        setTimeout(trackElements, 1000);
     };
 
     var fireEvent = function (cat, act) {
@@ -45,6 +39,11 @@
     };
 
     var trackElements = function () {
+        ga('create', 'UA-50934024-1', 'brulima.github.io');
+        ga('require', 'displayfeatures');
+        ga('set', 'dimension1', 'Rejeitado');
+        ga('send', 'pageview');
+
         for (var i = links.length - 1; i >= 0; i--) {
             links[i].addEventListener('mousedown', trackLink);
         }
@@ -72,6 +71,6 @@
     var links = doc.getElementsByTagName('a');
 
     if (!isDebug(doc.location.search)) {
-        loadGoogleAnalytics();
+        loadGoogleAnalytics(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
     }
 })();
