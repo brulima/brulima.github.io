@@ -1,6 +1,6 @@
 module.exports = function (grunt) {
     return {
-        app: {
+        js: {
             src: [
                 '../js/app.js'
             ],
