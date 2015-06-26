@@ -12,12 +12,12 @@
             return;
         }
 
+        ga('set', 'dimension1', 'Não Rejeitado');
+        bounce = false;
+
         if (typeof localStorage === 'object') {
             localStorage.bounce = false;
         }
-
-        ga('set', 'dimension1', 'Não Rejeitado');
-        bounce = false;
     };
 
     var loadGoogleAnalytics = function () {
@@ -59,6 +59,8 @@
     var trackLink = function (event) {
         target = event.target;
         title = target.title;
+
+        console.log(title)
         var fire = {
             'category': title.split('|')[0],
             'action':title.split('|')[1]

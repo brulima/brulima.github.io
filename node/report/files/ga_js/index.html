@@ -103,12 +103,12 @@
             return;
         }
 
+        ga(&#039;set&#039;, &#039;dimension1&#039;, &#039;Não Rejeitado&#039;);
+        bounce = false;
+
         if (typeof localStorage === &#039;object&#039;) {
             localStorage.bounce = false;
         }
-
-        ga(&#039;set&#039;, &#039;dimension1&#039;, &#039;Não Rejeitado&#039;);
-        bounce = false;
     };
 
     var loadGoogleAnalytics = function () {

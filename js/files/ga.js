@@ -12,12 +12,12 @@
             return;
         }
 
+        ga('set', 'dimension1', 'Não Rejeitado');
+        bounce = false;
+
         if (typeof localStorage === 'object') {
             localStorage.bounce = false;
         }
-
-        ga('set', 'dimension1', 'Não Rejeitado');
-        bounce = false;
     };
 
     var loadGoogleAnalytics = function () {
