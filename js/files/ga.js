@@ -1,4 +1,4 @@
-(function ga () {
+(function googleAnalytics () {
     var isBounce = function () {
         if (typeof localStorage !== 'object' || !localStorage.bounce) {
             return true;
@@ -20,18 +20,25 @@
         bounce = false;
     };
 
-    var getNextMonth = function () {
-        var now = new Date();
-        now.setTime(now.getTime() + 24*60*60*1000*30);
-        return now.toGMTString();
-    };
+    var loadGoogleAnalytics = function () {
+        var win = window;
+        var gaFunction = function (){
+            win.ga.q = win.ga.q || [];
+            win.ga.q.push(arguments);
+        };
 
-    var loadGoogleAnalytics = function (i,s,o,g,r,a,m) {
-        i.GoogleAnalyticsObject=r;i[r]=i[r]||function (){
-        (i[r].q=i[r].q||[]).push(arguments);};i[r].l=1*new Date();a=s.createElement(o);
-        m=doc.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m);
+        win.GoogleAnalyticsObject = 'ga';
+        win.ga = win.ga || gaFunction;
+        win.ga.l = 1 * new Date();
 
-        setTimeout(trackElements, 1000);
+        var script = doc.createElement('script');
+
+        script.async = 1;
+        script.src = '//www.google-analytics.com/analytics.js';
+
+        doc.body.appendChild(script);
+
+        trackElements();
     };
 
     var fireEvent = function (cat, act) {
@@ -66,11 +73,10 @@
     };
 
     var doc = document;
-    var nextMonth = getNextMonth();
     var bounce = isBounce();
     var links = doc.getElementsByTagName('a');
 
     if (!isDebug(doc.location.search)) {
-        loadGoogleAnalytics(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+        loadGoogleAnalytics();
     }
 })();

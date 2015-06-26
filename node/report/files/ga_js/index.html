@@ -44,11 +44,11 @@
   <div class="row">
     <div class="col-md-6">
       <h2 class="header">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"  data-container="body"></i></a></h2>
-      <p class="stat">70.92</p>
+      <p class="stat">70.93</p>
     </div>
     <div class="col-md-6">
       <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h2>
-      <p class="stat">76</p>
+      <p class="stat">79</p>
     </div>
   </div>
   <div class="row historical">
@@ -62,11 +62,11 @@
   <div class="row">
     <div class="col-md-6">
       <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty" data-container="body"></i></a></h2>
-      <p class="stat">23.53</p>
+      <p class="stat">21.43</p>
     </div>
     <div class="col-md-6">
       <h2 class="header">Estimated Errors  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs" data-container="body"></i></a></h2>
-      <p class="stat">0.75</p>
+      <p class="stat">0.61</p>
     </div>
   </div>
 </div>
@@ -89,7 +89,7 @@
 
 <div class="container">
   <div class="row">
-    <textarea id="file-source" class="col-md-12">(function ga () {
+    <textarea id="file-source" class="col-md-12">(function googleAnalytics () {
     var isBounce = function () {
         if (typeof localStorage !== &#039;object&#039; || !localStorage.bounce) {
             return true;
@@ -111,18 +111,22 @@
         bounce = false;
     };
 
-    var getNextMonth = function () {
-        var now = new Date();
-        now.setTime(now.getTime() + 24*60*60*1000*30);
-        return now.toGMTString();
-    };
+    var loadGoogleAnalytics = function () {
+        var gaFunction = function (){
+            this.q = this.q || [];
+            this.q.push(arguments);
+        };
 
-    var loadGoogleAnalytics = function (i,s,o,g,r,a,m) {
-        i.GoogleAnalyticsObject=r;i[r]=i[r]||function (){
-        (i[r].q=i[r].q||[]).push(arguments);};i[r].l=1*new Date();a=s.createElement(o);
-        m=doc.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m);
+        window.GoogleAnalyticsObject = &#039;ga&#039;;
+        window.ga = window.ga || gaFunction;
+        window.ga.l = 1 * new Date();
+        var script = document.createElement(&#039;script&#039;);
+        script.async = 1;
+        script.src = &#039;//www.google-analytics.com/analytics.js&#039;;
 
-        setTimeout(trackElements, 1000);
+        document.body.appendChild(script);
+
+        trackElements();
     };
 
     var fireEvent = function (cat, act) {
@@ -157,12 +161,11 @@
     };
 
     var doc = document;
-    var nextMonth = getNextMonth();
     var bounce = isBounce();
     var links = doc.getElementsByTagName(&#039;a&#039;);
 
     if (!isDebug(doc.location.search)) {
-        loadGoogleAnalytics(window,document,&#039;script&#039;,&#039;http://www.google-analytics.com/analytics.js&#039;,&#039;ga&#039;);
+        loadGoogleAnalytics();
     }
 })();</textarea>
   </div>
