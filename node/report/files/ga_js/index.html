@@ -44,11 +44,11 @@
   <div class="row">
     <div class="col-md-6">
       <h2 class="header">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"  data-container="body"></i></a></h2>
-      <p class="stat">70.64</p>
+      <p class="stat">74.52</p>
     </div>
     <div class="col-md-6">
       <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h2>
-      <p class="stat">82</p>
+      <p class="stat">107</p>
     </div>
   </div>
   <div class="row historical">
@@ -62,11 +62,11 @@
   <div class="row">
     <div class="col-md-6">
       <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty" data-container="body"></i></a></h2>
-      <p class="stat">22.15</p>
+      <p class="stat">21.73</p>
     </div>
     <div class="col-md-6">
       <h2 class="header">Estimated Errors  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs" data-container="body"></i></a></h2>
-      <p class="stat">0.63</p>
+      <p class="stat">0.75</p>
     </div>
   </div>
 </div>
@@ -91,81 +91,106 @@
   <div class="row">
     <textarea id="file-source" class="col-md-12">(function googleAnalytics () {
     var isBounce = function () {
-        if (typeof localStorage !== &#039;object&#039; || !localStorage.bounce) {
+        if (!hasLocalStorage || !localStorage.bounce) {
             return true;
         }
 
         return false;
     };
 
-    var notBounce = function(){
+    var fireNotBounce = function(){
         if (!bounce) {
             return;
         }
 
         ga(&#039;set&#039;, &#039;dimension1&#039;, &#039;Não Rejeitado&#039;);
         bounce = false;
+        saveNotBounce();
+    };
 
-        if (typeof localStorage === &#039;object&#039;) {
+    var saveNotBounce = function () {
+        if (hasLocalStorage) {
             localStorage.bounce = false;
         }
     };
 
-    var loadGoogleAnalytics = function () {
-        var win = window;
-        var gaFunction = function (){
-            win.ga.q = win.ga.q || [];
-            win.ga.q.push(arguments);
-        };
+    var hasLocalStorage = function () {
+        return typeof localStorage !== &#039;object&#039;;
+    };
 
+    var loadGoogleAnalytics = function () {
         win.GoogleAnalyticsObject = &#039;ga&#039;;
         win.ga = win.ga || gaFunction;
         win.ga.l = 1 * new Date();
 
+        loadGoogleAnalyticsScript();
+    };
+
+    var loadGoogleAnalyticsScript = function () {
         var script = doc.createElement(&#039;script&#039;);
 
-        script.async = 1;
-        script.src = &#039;//www.google-analytics.com/analytics.js&#039;;
+        script.async = true;
+        script.src = gaSrc;
 
         doc.body.appendChild(script);
 
-        trackElements();
+        fireConfiguration();
     };
 
     var fireEvent = function (cat, act) {
         ga(&#039;send&#039;, &#039;event&#039;, cat, act, &#039;Clique&#039;);
+        fireNotBounce();
     };
 
-    var trackElements = function () {
+    var fireConfiguration = function () {
         ga(&#039;create&#039;, &#039;UA-50934024-1&#039;, &#039;brulima.github.io&#039;);
         ga(&#039;require&#039;, &#039;displayfeatures&#039;);
         ga(&#039;set&#039;, &#039;dimension1&#039;, &#039;Rejeitado&#039;);
         ga(&#039;send&#039;, &#039;pageview&#039;);
 
-        for (var i = links.length - 1; i &gt;= 0; i--) {
+        trackElements();
+    };
+
+    var trackElements = function () {
+        for (var i = 0; i &lt; links.length; i++) {
             links[i].addEventListener(&#039;mousedown&#039;, trackLink);
         }
     };
 
     var trackLink = function (event) {
-        target = event.target;
-        title = target.title;
-        var fire = {
+        var target = event.target;
+        var eventParameters = getEventParameters(target);
+
+        fireEvent(eventParameters.category, eventParameters.action);
+    };
+
+    var getEventParameters = function (target) {
+        var title = target.title;
+
+        return {
             &#039;category&#039;: title.split(&#039;|&#039;)[0],
             &#039;action&#039;:title.split(&#039;|&#039;)[1]
         };
-
-        fireEvent(fire.category, fire.action);
-        notBounce();
     };
 
     var isDebug = function (search) {
         return search.indexOf(&#039;debug&#039;) &gt;= 0;
     };
 
+    var gaFunction = function (){
+        win.ga.q = win.ga.q || [];
+        win.ga.q.push(arguments);
+    };
+
+    var getElements = function (tagName) {
+        return doc.getElementsByTagName(tagName);
+    };
+
     var doc = document;
+    var win = window;
     var bounce = isBounce();
-    var links = doc.getElementsByTagName(&#039;a&#039;);
+    var links = getElements(&#039;a&#039;);
+    var gaSrc = &#039;//www.google-analytics.com/analytics.js&#039;;
 
     if (!isDebug(doc.location.search)) {
         loadGoogleAnalytics();

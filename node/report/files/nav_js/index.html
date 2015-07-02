@@ -44,11 +44,11 @@
   <div class="row">
     <div class="col-md-6">
       <h2 class="header">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"  data-container="body"></i></a></h2>
-      <p class="stat">66.27</p>
+      <p class="stat">74.27</p>
     </div>
     <div class="col-md-6">
       <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h2>
-      <p class="stat">99</p>
+      <p class="stat">165</p>
     </div>
   </div>
   <div class="row historical">
@@ -62,11 +62,11 @@
   <div class="row">
     <div class="col-md-6">
       <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty" data-container="body"></i></a></h2>
-      <p class="stat">26.39</p>
+      <p class="stat">30.30</p>
     </div>
     <div class="col-md-6">
       <h2 class="header">Estimated Errors  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs" data-container="body"></i></a></h2>
-      <p class="stat">0.69</p>
+      <p class="stat">1.03</p>
     </div>
   </div>
 </div>
@@ -91,81 +91,146 @@
   <div class="row">
     <textarea id="file-source" class="col-md-12">(function nav () {
     var doc = document;
-    var menu = doc.getElementById(&#039;menu-header&#039;);
-    var name = doc.getElementById(&#039;name&#039;);
-    var content = doc.getElementById(&#039;content&#039;);
-    var menuItens = doc.getElementsByClassName(&#039;menu-item&#039;);
+
+    var getElement = function (id) {
+        return doc.getElementById(id);
+    };
+
+    var getElements = function (className) {
+        return doc.getElementsByClassName(className);
+    };
+
+    var menu = getElement(&#039;menu-header&#039;);
+    var name = getElement(&#039;name&#039;);
+    var content = getElement(&#039;content&#039;);
+    var menuItens = getElements(&#039;menu-item&#039;);
     var activeContent = &#039;header-section&#039;;
     var firstClick = true;
+
     var topElements = {
         &#039;menu&#039;: menu,
         &#039;name&#039;: name
     };
 
+    var isHeader = function (contentSection) {
+        return (contentSection === &#039;header-section&#039; &amp;&amp; !firstClick);
+    };
+
     var sectionChange = function(oldContent, newContent) {
+        return compareEqualSection(oldContent, newContent);
+    };
+
+    var compareEqualSection = function (oldContent, newContent) {
         if (oldContent === newContent) {
             return;
         }
 
+        return isFirstClick(oldContent, newContent);
+    };
+
+    var isFirstClick = function (oldContent, newContent) {
         if (firstClick) {
-            setContentPage();
-            firstClick = false;
+            forEachObject(topElements, setContentPage);
+            return changeSection(oldContent, newContent);
         }
 
-        if (newContent === &#039;header-section&#039; &amp;&amp; !firstClick) {
-            setFirstPage();
-            firstClick = true;
+        return isHeaderClick(oldContent, newContent);
+    };
+
+    var isHeaderClick = function (oldContent, newContent) {
+        if (isHeader(newContent)) {
+            forEachObject(topElements, setFirstPage);
         }
 
+        return changeSection(oldContent, newContent);
+    };
+
+    var changeSection = function (oldContent, newContent) {
         activeContent = newContent;
 
-        newContent = doc.getElementById(newContent);
-        oldContent = doc.getElementById(oldContent);
+        newContent = getElement(newContent);
+        oldContent = getElement(oldContent);
 
-        oldContent.classList.add(&#039;fadeOutUp&#039;);
-
-        var setTimeOutChangeSection = function () {
-            oldContent.classList.remove(&#039;fadeOutUp&#039;);
-            oldContent.classList.add(&#039;hidden-element&#039;);
-
-            newContent.classList.remove(&#039;hidden-element&#039;);
-            newContent.classList.add(&#039;fadeInUp&#039;);
-
-            setTimeout(setTimeOutremoveFadeInClassFromNewSecion, 1000);
-        };
+        addClass(oldContent, &#039;fadeOutUp&#039;);
 
         var setTimeOutremoveFadeInClassFromNewSecion = function () {
-            newContent.classList.remove(&#039;fadeInUp&#039;);
+            removeFadeClass(newContent);
+        };
+
+        var setTimeOutChangeSection = function () {
+            fadeOut(oldContent);
+            fadeIn(newContent);
+
+            setTimeout(setTimeOutremoveFadeInClassFromNewSecion, 1000);
         };
 
         setTimeout(setTimeOutChangeSection, 1000);
     };
 
-    var setContentPage = function () {
-        for (var el in topElements) {
-            if (topElements.hasOwnProperty(el)) {
-                var element = topElements[el];
+    var fadeIn = function (element, topElement) {
+        removeClass(element, &#039;hidden-element&#039;);
+        addClass(element, &#039;fadeInUp&#039;);
 
-                element.classList.add(&#039;fadeInUp&#039;);
-                element.classList.add(&#039;top-&#039; + el);
+        if (typeof topElement === &quot;string&quot;) {
+            addClass(element, &#039;top-&#039; + topElement);
+        }
 
-                content.appendChild(element);
+        removeFadeClassCall(element);
+    };
+
+    var fadeOut = function (element, topElement) {
+        addClass(element, &#039;fadeOutUp&#039;);
+        addClass(element, &#039;hidden-element&#039;);
+
+        removeFadeClassCall(element);
+    };
+
+    var removeFadeClassCall = function (element) {
+        var passArgument = function () {
+            removeFadeClass(element);
+        };
+
+        setTimeout(passArgument, 1000);
+    };
+
+    var removeFadeClass = function (element) {
+        removeClass(element, &#039;fadeInUp&#039;);
+        removeClass(element, &#039;fadeOutUp&#039;);
+    };
+
+    var setContentPage = function (topElements, el) {
+        var element = topElements[el];
+        firstClick = false;
+
+        fadeIn(element, el);
+        content.appendChild(element);
+    };
+
+    var setFirstPage = function (topElements, el) {
+        var container = getElement(el + &#039;-container&#039;);
+        var element = topElements[el];
+        firstClick = true;
+
+        removeFadeClass(element);
+        removeClass(element, &#039;top-&#039; + el);
+
+        container.appendChild(element);
+    };
+
+    var forEachObject = function (obj, fn) {
+        for (var key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                fn(obj, key);
             }
         }
     };
 
-    var setFirstPage = function () {
-        for (var el in topElements) {
-            if (topElements.hasOwnProperty(el)) {
-                var container = doc.getElementById(el + &#039;-container&#039;);
-                var element = topElements[el];
+    var addClass = function (element, className) {
+        element.classList.add(className);
+    };
 
-                element.classList.remove(&#039;fadeInUp&#039;);
-                element.classList.remove(&#039;top-&#039; + el);
-
-                container.appendChild(element);
-            }
-        }
+    var removeClass = function (element, className) {
+        element.classList.remove(className);
     };
 
     var fireSectionChange = function (event) {
@@ -176,16 +241,17 @@
     };
 
     var setTimeOutRemoveFadeInClassFromHeader = function () {
-        var header = doc.getElementById(&#039;header-section&#039;);
-        header.classList.remove(&#039;fadeInUp&#039;);
+        var header = getElement(&#039;header-section&#039;);
+        removeFadeClass(header);
     };
+
 
     for (var i = 0; i &lt; menuItens.length; i++) {
         var menuItem = menuItens[i];
         menuItem.addEventListener(&#039;click&#039;, fireSectionChange);
     }
 
-    setTimeout(setTimeOutRemoveFadeInClassFromHeader, 2000);
+    setTimeout(setTimeOutRemoveFadeInClassFromHeader, 1000);
 
 })();</textarea>
   </div>

@@ -22,16 +22,15 @@ a:link {
 #content {
 	width: 80%;
 	padding: 10% 10% 10% 10%;
+    padding-bottom: 0;
 	height: 55%;
 	position: relative;
 }
 #header-section {
 	position: relative;
-	height: 100%;
 }
 #header-section nav {
 	position: absolute;
-	bottom: 0%;
 }
 #header-section nav p  {
 	margin: 0;
@@ -151,17 +150,13 @@ span.link:hover {
 	float: left;
 	width: 50%;
 }
-#portfolio-section {
-	height: 90%;
-}
-.information-section h4 {
-	margin-bottom: 0%;
+.information-section {
+    margin-bottom: 0%;
 }
 .information-section legend {
 	margin-bottom: 2%;
 	font-size: 0.8em;
 }
-
 footer p {
 	margin: 0;
 	font-size: 0.4em;
