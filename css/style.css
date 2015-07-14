@@ -57,6 +57,10 @@ h2, h3 {
 	margin-top: 0%;
 	margin-bottom: 5%;
 }
+h4 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
 p {
 	font-size: 32px;
 	margin-top: 0%;
@@ -162,6 +166,11 @@ footer p {
 	font-size: 0.4em;
 	margin-top: 5%;
 }
+@media (max-width: 1456px) {
+    #content .portfolio p {
+        font-size: 20px;
+    }
+}
 @media (max-width: 1180px) {
     #content .portfolio li {
         width: 48%;
@@ -188,7 +197,7 @@ footer p {
         float: none;
         max-width: 100%;
     }
-    #header-section nav {
+    #menu-header {
         display: none;
     }
     img {
