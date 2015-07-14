@@ -152,7 +152,8 @@ span.link:hover {
 }
 #experience-section article, #education-section article {
 	float: left;
-	width: 50%;
+	width: 48%;
+    margin-right: 2%;
 }
 .information-section {
     margin-bottom: 0%;
