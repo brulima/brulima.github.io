@@ -150,7 +150,7 @@ span.link:hover {
 .hidden-element {
 	display: none;
 }
-#experience-section article, #education-section article {
+#experience-section article, #education-section article, #contact-section article {
 	float: left;
 	width: 48%;
     margin-right: 2%;
@@ -167,6 +167,30 @@ footer p {
 	font-size: 0.4em;
 	margin-top: 5%;
 }
+form>*{
+	display: block;
+	width: 80%;
+	margin-bottom: 2%;
+	font-size: 0.8em;
+	font-weight: lighter;
+	font-family: 'Open Sans';
+	padding-left: 1%;
+}
+form input[type="submit"] {
+	width: 30%;
+	font-family: 'CodeLight', sans-serif;
+	margin: 0;
+	color: rgb(255, 42, 79);
+	font-weight: bolder;
+	letter-spacing: 3px;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	text-align: left;
+	padding-left: 1%;
+	font-size: 1em;
+	margin-bottom: 5%;
+}
 @media (max-width: 1456px) {
     #content .portfolio p {
         font-size: 20px;
@@ -176,7 +200,7 @@ footer p {
     #content .portfolio li {
         width: 48%;
     }
-    #experience-section article, #education-section article {
+    #experience-section article, #education-section article, #contact-section article {
         float: left;
         width: 100%;
     }
@@ -225,7 +249,7 @@ footer p {
     h4 {
         margin-top: 5%;
     }
-    #experience-section article, #education-section article {
+    #experience-section article, #education-section article, #contact-section article {
         float: none;
     }
 }
