@@ -5,6 +5,6 @@
 	};
 
 	getElement("name-contact-form").addEventListener("change", function() {
-		getElement("subject-contact-form").setAttribute("value", "Contato Portfólio - " + this.value);
+		getElement("subject-contact-form").setAttribute("value", "[Contato Portfólio] " + this.value);
 	});
 })();

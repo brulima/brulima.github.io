@@ -102,11 +102,24 @@
 		</div>
 		<div id="contact-section" class="information-section hidden-element">
 			<h3>Contato</h3>
-			<p class="email">Email: <spam itemprop="email" id="email">bru.allima@gmail.com</spam></p>
-			<p>
-				<a href="http://br.linkedin.com/pub/bruna-lima/34/b34/955/" target="_blank" title="Contato|Linkedin">Linkedin</a> |
-				<a href="http://github.com/brulima" target="_blank" title="Contato|Github">GitHub</a>
-			</p>
+			<article>
+				<form id="contact-form" action="http://formspree.io/bruallima@gmail.com" method="POST">
+				    <input type="text" name="Nome" id="name-contact-form" placeholder="Nome">
+				    <input type="email" name="Email" placeholder="Email">
+				    <input type="hidden" id="subject-contact-form" name="_subject" value="[Contato portfólio]" />
+				    <textarea name="Mensagem" placeholder="Mensagem"></textarea>
+				    <input type="text" name="_gotcha" style="display:none" />
+				    <input type="hidden" name="_next" value="#" />
+				    <input type="submit" value="Enviar">
+				</form>
+			</article>
+			<article>
+				<p class="email">Email: <spam itemprop="email" id="email">bru.allima@gmail.com</spam></p>
+				<p>
+					<a href="http://br.linkedin.com/pub/bruna-lima/34/b34/955/" target="_blank" title="Contato|Linkedin">Linkedin</a> |
+					<a href="http://github.com/brulima" target="_blank" title="Contato|Github">GitHub</a>
+				</p>
+			</article>
 		</div>
 	</div>
 	<script type="text/javascript" src="js/app.min.js"></script>
