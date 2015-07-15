@@ -6,9 +6,6 @@
 	font-family: 'Open Sans';
 	src: url(../fonts/OpenSans-Light.ttf);
 }
-html, body {
-	height: 100%;
-}
 body {
 	background-color:  rgb(255, 252, 252);
 	margin: 0;
@@ -19,67 +16,56 @@ body {
 a:link {
 	text-decoration: none;
 }
-#content {
-	width: 80%;
-	padding: 10% 10% 10% 10%;
-    padding-bottom: 0;
-	height: 55%;
-	position: relative;
-}
-#header-section {
-	position: relative;
-}
-#header-section nav {
-	position: absolute;
-}
-#header-section nav p  {
-	margin: 0;
-}
-h1{
-	font-family: 'CodeLight', sans-serif;
-	font-size: 3.5em;
-	margin:0;
-	color: rgb(255, 42, 79);
-	max-width: 65%;
-
+a:visited {
+    color: transparent;
 }
 img {
-	width: 33%;
-	position: absolute;
-	top: 0%;
-	right: 0%;
-	border: 1px solid rgb(40, 40, 40);
+    border: 1px solid rgb(40, 40, 40);
+}
+h1 {
+    font-family: 'CodeLight', sans-serif;
+    font-size: 3.5em;
+    margin:0;
+    color: rgb(255, 42, 79);
 }
 h2, h3 {
-	max-width: 65%;
-	font-size: 48px;
-	font-weight: normal;
-	margin-top: 0%;
-	margin-bottom: 5%;
+    font-size: 48px;
+    font-weight: normal;
+    margin-top: 0%;
+    margin-bottom: 5%;
 }
 h4 {
     margin-top: 0;
     margin-bottom: 0;
 }
 p {
-	font-size: 32px;
-	margin-top: 0%;
-	margin-bottom: 5%;
+    font-size: 32px;
+    margin-top: 0%;
+    margin-bottom: 5%;
 }
-p a, span.link {
-	color: rgb(255, 87, 0);
+p a{
+    color: rgb(255, 87, 0);
 }
 a {
-	cursor: pointer;
+    cursor: pointer;
 }
-span.link:hover {
-	cursor: pointer;
+#content {
+	width: 80%;
+	padding: 10% 10% 10% 10%;
+    padding-bottom: 0;
+	position: relative;
+}
+.header.information-section .header-info {
+    float: left;
+    width: 65%;
+}
+
+.header.information-section img {
+    float: left;
+    width: 30%;
 }
 .email {
 	margin-bottom: 0;
-}
-.portfolio {
-	width: 100%;
 }
 .portfolio li {
 	background-color: white;
@@ -95,11 +81,8 @@ span.link:hover {
 	color: transparent;
 	background-size: 150%;
 }
-#content .portfolio li:hover {
+.portfolio li:hover {
 	background-opacity: 0.5p;
-}
-.portfolio a:visited {
-    color: transparent;
 }
 .portfolio .portfolio-mask {
 	padding: 0 2%;
@@ -110,7 +93,7 @@ span.link:hover {
     color: transparent;
 	transition: background-color 0.3s linear;
 }
-#content .portfolio .portfolio-mask:hover {
+.portfolio .portfolio-mask:hover {
 	background-color: transparent;
 }
 .portfolio ul {
@@ -132,40 +115,40 @@ span.link:hover {
 	background-image: url(https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-xta1/v/t1.0-9/11425246_835923686495989_1194236587083296584_n.jpg?oh=83549b6f02a87d2269f36de60d8900ca&oe=562B2ED3&__gda__=1445573978_bbebd1888c8bf89ec6e1118128ab7ab0);
 }
 .top-menu {
-	position: absolute;
+	position: fixed;
 	top: 10%;
 }
 .top-name {
-    position: absolute;
+    position: fixed;
     top: 11%;
     right: 10%;
     font-size: 1.2em;
 }
-
 .fadeInUp {
   -webkit-animation: fadeInUp 1s;
   animation: fadeInUp 1s;
 }
-
 .fadeOutUp {
   -webkit-animation: fadeOutUp 1s;
   animation: fadeOutUp 1s;
 }
-
 .hidden-element {
 	display: none;
 }
-#experience-section article, #education-section article, #contact-section article {
+.information-section ul {
+    padding: 0;
+    margin: 0;
+}
+.information-card {
 	float: left;
-	width: 48%;
-    margin-right: 2%;
+	width: 46%;
+    margin-right: 4%;
+    margin-bottom: 4%;
+    list-style: none;
 }
-.information-section {
-    margin-bottom: 0%;
-}
-.information-section legend {
+.information-card p.date {
 	margin-bottom: 2%;
-	font-size: 0.8em;
+	font-size: 0.7em;
 }
 footer p {
 	margin: 0;
@@ -197,10 +180,10 @@ form input[type="submit"] {
 	margin-bottom: 5%;
 }
 @media (max-width: 1180px) {
-    #content .portfolio li {
+    .portfolio li {
         width: 48%;
     }
-    #experience-section article, #education-section article, #contact-section article {
+    .information-card {
         float: left;
         width: 100%;
     }
@@ -214,31 +197,20 @@ form input[type="submit"] {
 	.hidden-element {
         display: block;
     }
-    #header-section {
+    .header.information-section {
         position: static;
         height: auto;
-    }
-    #header-section h1, h2{
-        float: none;
-        max-width: 100%;
     }
     #menu-header {
         display: none;
     }
-    img {
-        width: 48%;
-        position: static;
-        margin-bottom: 2%;
-        border: 1px solid rgb(40, 40, 40);
-    }
-    #content {
-        height: auto;
+    .header.information-section .header-info h2 {
+        margin-top: 0;
     }
     .fadeInUp {
       -webkit-animation: none;
       animation: none;
     }
-
     .fadeOutUp {
       -webkit-animation: none;
       animation: none;
@@ -248,9 +220,6 @@ form input[type="submit"] {
     }
     h4 {
         margin-top: 5%;
-    }
-    #experience-section article, #education-section article, #contact-section article {
-        float: none;
     }
 }
 @media (max-width: 1110px) {
@@ -278,9 +247,14 @@ form input[type="submit"] {
 	}
 }
 @media (max-width: 790px) {
-	#content .portfolio li {
+	.portfolio li {
 		width: 100%;
 	}
+    .header.information-section .header-info,
+    .header.information-section img {
+        float: none;
+        width: 100%;
+    }
 	h1, h2, h3 {
 		max-width: 100%;
 	}

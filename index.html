@@ -10,22 +10,24 @@
 </head>
 <body>
 	<div itemscope itemtype="http://schema.org/Person" id="content">
-		<div id="header-section" class="information-section fadeInUp">
-			<div id="name-container">
-				<h1 id="name" itemprop="name"><a class="menu-item" data-menu="header-section">Bruna Lima</a></h1>
+		<div id="header-section" class="header information-section fadeInUp">
+			<div class="header-info">
+				<div id="name-container">
+					<h1 id="name" itemprop="name"><a class="menu-item" data-menu="header-section">Bruna Lima</a></h1>
+				</div>
+				<h2>Front-end Developer</h2>
+				<div id="menu-container">
+					<nav id="menu-header">
+						<p>
+							<a class="menu-item" data-menu="experience-section" title="Menu|Experiência">Experiência</a> |
+							<a class="menu-item" data-menu="education-section" title="Menu|Formação">Formação</a> |
+							<a class="menu-item" data-menu="contact-section" title="Menu|Contato">Contato</a> |
+							<a class="menu-item" data-menu="portfolio-section" title="Menu|Portfólio">Portfólio</a>
+						</p>
+					</nav>
+				</div>
 			</div>
-			<h2>Front-end Developer</h2>
 			<img itemprop="image" src="images/profile/bruna-lima.jpg" alt="Bruna Lima"/>
-			<div id="menu-container">
-				<nav id="menu-header">
-					<p>
-						<a class="menu-item" data-menu="experience-section" title="Menu|Experiência">Experiência</a> |
-						<a class="menu-item" data-menu="education-section" title="Menu|Formação">Formação</a> |
-						<a class="menu-item" data-menu="contact-section" title="Menu|Contato">Contato</a> |
-						<a class="menu-item" data-menu="portfolio-section" title="Menu|Portfólio">Portfólio</a>
-					</p>
-				</nav>
-			</div>
 		</div>
 		<div id="portfolio-section" class="information-section hidden-element">
 			<h3>Portfólio</h3>
@@ -60,45 +62,47 @@
 		</div>
 		<div id="experience-section" class="information-section hidden-element">
 			<h3>Experiência</h3>
-			<article class="experience">
-				<h4 class="experience-title">UOL</h4>
-				<legend>Março/2015 - atual</legend>
-				<p>Webmaster</p>
-				<p>JavaScript, Java, Testes unitários e integrados, Karma, Jasmine, AngularJS, Git, Apache, JUnit.</p>
-			</article>
-			<article class="experience">
-				<h4 class="experience-title">DP6</h4>
-				<legend>Fevereiro/2013 - Fevereiro/2015</legend>
-				<p>Analista Jr II</p>
-				<p>JavaScript, Marketing Digital, Scrum, jQuery, Grunt, Git, GitHub, TagBox, HTML5, CSS3, NodeJS.</p>
-			</article>
+			<ul>
+				<li class="experience information-card">
+					<h4 class="experience-title">UOL - Webmaster</h4>
+					<p class="date">Março/2015 - atual</p>
+					<p>JavaScript, Java, Testes unitários e integrados, Karma, Jasmine, AngularJS, Git, Apache, JUnit.</p>
+				</li>
+				<li class="experience information-card">
+					<h4 class="experience-title">DP6 - Analista Jr II</h4>
+					<p class="date">Fevereiro/2013 - Fevereiro/2015</p>
+					<p>JavaScript, Marketing Digital, Scrum, jQuery, Grunt, Git, GitHub, TagBox, HTML5, CSS3, NodeJS.</p>
+				</li>
+			</ul>
 		</div>
 		<div id="education-section" class="information-section hidden-element">
 			<h3>Formação</h3>
-			<article class="education">
-				<h4 class="education-title">FIAP</h4>
-				<legend>Janeiro/2014 - Dezembro/2015</legend>
-				<p>Análise e Desenvolvimento de Sistemas</p>
-			</article>
-			<article class="education">
-				<h4 class="education-title">IME - USP</h4>
-				<legend>Janeiro/2012 - Dezembro/2014</legend>
-				<p>Bacharelado em Matemática Aplicada e Computacional</p>
-			</article>
-			<article class="education">
-				<h4 class="education-title">ETEC Parque da Juventude</h4>
-				<legend>Janeiro/2010 - Julho/2011</legend>
-				<p>Informática para Internet</p>
-			</article>
-			<article class="education">
-				<h4 class="education-title">ETEC Professor Basilides de Godoy</h4>
-				<legend>Janeiro/2009 - Dezembro/2011</legend>
-				<p>Ensino Médio</p>
-			</article>
+			<ul>
+				<li class="education information-card">
+					<h4 class="education-title">FIAP</h4>
+					<p class="date">Janeiro/2014 - Dezembro/2015</p>
+					<p>Análise e Desenvolvimento de Sistemas</p>
+				</li>
+				<li class="education information-card">
+					<h4 class="education-title">IME - USP</h4>
+					<p class="date">Janeiro/2012 - Dezembro/2014</p>
+					<p>Matemática Aplicada e Computacional</p>
+				</li>
+				<li class="education information-card">
+					<h4 class="education-title">ETEC Parque da Juventude</h4>
+					<p class="date">Janeiro/2010 - Julho/2011</p>
+					<p>Informática para Internet</p>
+				</li>
+				<li class="education information-card">
+					<h4 class="education-title">ETEC Professor Basilides de Godoy</h4>
+					<p class="date">Janeiro/2009 - Dezembro/2011</p>
+					<p>Ensino Médio</p>
+				</li>
+			</ul>
 		</div>
 		<div id="contact-section" class="information-section hidden-element">
 			<h3>Contato</h3>
-			<article>
+			<div class="information-card">
 				<form id="contact-form" action="http://formspree.io/bruallima@gmail.com" method="POST">
 				    <input type="text" name="Nome" id="name-contact-form" placeholder="Nome" required>
 				    <input type="email" name="Email" placeholder="Email" required>
@@ -108,14 +112,14 @@
 				    <input type="hidden" name="_next" value="#" />
 				    <input type="submit" value="Enviar">
 				</form>
-			</article>
-			<article>
-				<p class="email">Email: <spam itemprop="email" id="email">bru.allima@gmail.com</spam></p>
+			</div class="information-card">
+			<div class="information-card">
+				<p class="email">Email: <span itemprop="email" id="email">bru.allima@gmail.com</span></p>
 				<p>
 					<a href="http://br.linkedin.com/pub/bruna-lima/34/b34/955/" target="_blank" title="Contato|Linkedin">Linkedin</a> |
 					<a href="http://github.com/brulima" target="_blank" title="Contato|Github">GitHub</a>
 				</p>
-			</article>
+			</div class="information-card">
 		</div>
 	</div>
 	<script type="text/javascript" src="js/app.min.js"></script>
