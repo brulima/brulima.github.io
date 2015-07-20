@@ -107,10 +107,11 @@
 				<form id="contact-form" action="http://formspree.io/bruallima@gmail.com" method="POST">
 				    <input type="text" name="Nome" id="name-contact-form" placeholder="Nome" required>
 				    <input type="email" name="Email" placeholder="Email" required>
-				    <input type="hidden" id="subject-contact-form" name="_subject" value="[Contato portfólio]" />
+				    <input type="file" name="Foto" accept="image/*">
 				    <textarea name="Mensagem" placeholder="Mensagem" required></textarea>
 				    <input type="text" name="_gotcha" style="display:none" />
 				    <input type="hidden" name="_next" value="#" />
+				    <input type="hidden" id="subject-contact-form" name="_subject" value="[Contato portfólio]" />
 				    <input type="submit" value="Enviar">
 				</form>
 			</div class="information-card">
