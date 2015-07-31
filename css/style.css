@@ -16,9 +16,6 @@ body {
 a:link {
 	text-decoration: none;
 }
-a:visited {
-    color: transparent;
-}
 img {
     border: 1px solid rgb(40, 40, 40);
 }
@@ -43,7 +40,8 @@ p {
     margin-top: 0%;
     margin-bottom: 5%;
 }
-p a{
+p a,
+p a:visited {
     color: rgb(255, 87, 0);
 }
 a {
