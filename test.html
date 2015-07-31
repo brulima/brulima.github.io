@@ -5,7 +5,7 @@
 	<meta content="Portfólio Bruna Lima | Front-End Developer" name="description">
 	<meta name="google-site-verification" content="TBXcCHxOHwFb-kjCONH2Ov_eCLx83hmTqDZPACKf8L0" />
 	<title>Bruna Lima | Front-End Developer</title>
-	<link rel="stylesheet" href="css/style.min.css">
+	<link rel="stylesheet" href="css/style.css">
 	<meta name="viewport" content="width=device-width, user-scalable=no">
 	<link rel="icon" type="image/ico" href="images/ico/favicon.ico" />
 </head>
@@ -107,10 +107,11 @@
 				<form id="contact-form" action="http://formspree.io/bruallima@gmail.com" method="POST">
 				    <input type="text" name="Nome" id="name-contact-form" placeholder="Nome" required>
 				    <input type="email" name="Email" placeholder="Email" required>
-				    <input type="hidden" id="subject-contact-form" name="_subject" value="[Contato portfólio]" />
+				    <input type="file" name="Foto" accept="image/*">
 				    <textarea name="Mensagem" placeholder="Mensagem" required></textarea>
 				    <input type="text" name="_gotcha" style="display:none" />
 				    <input type="hidden" name="_next" value="#" />
+				    <input type="hidden" id="subject-contact-form" name="_subject" value="[Contato portfólio]" />
 				    <input type="submit" value="Enviar">
 				</form>
 			</div class="information-card">
@@ -123,6 +124,6 @@
 			</div class="information-card">
 		</div>
 	</div>
-	<script type="text/javascript" src="js/app.min.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>

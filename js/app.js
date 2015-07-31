@@ -1,110 +1,283 @@
-(function () {
-	// Google Analytics Script
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+(function googleAnalytics () {
+    var isBounce = function () {
+        if (!hasLocalStorage || !localStorage.bounce) {
+            return true;
+        }
 
-	ga('create', 'UA-50934024-1', 'brulima.github.io');
-	ga('require', 'displayfeatures');
-	ga('set', 'dimension1', 'Rejeitado');
-	ga('send', 'pageview');
+        return false;
+    };
 
-	var now = new Date(); now.setTime(now.getTime() + 24*60*60*1000*30);
-	var bounce = document.cookie.indexOf('bounce=false') >= 0 ? false : true;
+    var fireNotBounce = function(){
+        if (!bounce) {
+            return;
+        }
 
-	var notBounce = function(){
-		document.cookie = 'bounce=false;expires=' + now.toGMTString() + ';path=/';
-		ga('set', 'dimension1', 'Não Rejeitado');
-		bounce = false;
-	};
+        ga('set', 'dimension1', 'Não Rejeitado');
+        bounce = false;
+        saveNotBounce();
+    };
 
-	var links = document.getElementsByTagName('a');
-	for (var i = links.length - 1; i >= 0; i--) {
-		links[i].addEventListener("mousedown", function(){
-			ga('send', 'event', this.title.split("|")[0], this.title.split("|")[1], 'Clique');
-			notBounce();
-		});
-	}
+    var saveNotBounce = function () {
+        if (hasLocalStorage) {
+            localStorage.bounce = false;
+        }
+    };
 
-	document.getElementById("email").addEventListener("mousedown", function(){
-		ga('send', 'event', 'Contato', 'Email', 'Clique');
-		notBounce();
-	});
+    var hasLocalStorage = function () {
+        return typeof localStorage !== 'object';
+    };
 
-	setTimeout(function () {
-		var header = document.getElementById("header-section");
-		header.classList.remove("fadeInUp");
-	}, 2000);
+    var loadGoogleAnalytics = function () {
+        win.GoogleAnalyticsObject = 'ga';
+        win.ga = win.ga || gaFunction;
+        win.ga.l = 1 * new Date();
 
-	var sectionChange = function(oldSection, newSection) {
-		if (oldSection === newSection) {
-			return;
-		}
+        loadGoogleAnalyticsScript();
+    };
 
-		if (firstClick) {
-			setContentPage();
-			firstClick = false;
-		}
+    var loadGoogleAnalyticsScript = function () {
+        var script = doc.createElement('script');
 
-		if (newSection === "header" && !firstClick) {
-			setFirstPage();
-			firstClick = true;
-		}
+        script.async = true;
+        script.src = gaSrc;
 
-		actualActive = newSection;
-		oldSection = oldSection + "-section";
-		oldSection = document.getElementById(oldSection);
-		oldSection.classList.add("fadeOutUp");
+        doc.body.appendChild(script);
 
-		newSection = newSection + "-section";
-		newSection = document.getElementById(newSection);
+        fireConfiguration();
+    };
 
-		setTimeout(function () {
-			oldSection.classList.remove("fadeOutUp");
-			oldSection.classList.add("hidden-element");
-			newSection.classList.remove("hidden-element");
-			newSection.classList.add("fadeInUp");
-			setTimeout(function () {
-				newSection.classList.remove("fadeInUp");
-			}, 1000);
-		}, 1000);
-	};
+    var fireEvent = function (cat, act) {
+        ga('send', 'event', cat, act, 'Clique');
+        fireNotBounce();
+    };
 
-	var setContentPage = function () {
-		for (var i = 0; i < topElements.length; i++) {
-			topElements[i].classList.add('fadeInUp');
-			topElements[i].classList.add('top-' + topElements[i].id.split('-')[0]);
-			content.appendChild(topElements[i]);
-		};
-	};
+    var fireConfiguration = function () {
+        ga('create', 'UA-50934024-1', 'brulima.github.io');
+        ga('require', 'displayfeatures');
+        ga('set', 'dimension1', 'Rejeitado');
+        ga('send', 'pageview');
 
-	var setFirstPage = function () {
-		for (var i = 0; i < topElements.length; i++) {
-			var container = document.getElementById(topElements[i].id.split('-')[0] + '-container');
-			topElements[i].classList.remove('fadeInUp');
-			topElements[i].classList.remove('top-' + topElements[i].id.split('-')[0]);
-			content.removeChild(topElements[i]);
-			container.appendChild(topElements[i]);
-		};
-	};
+        trackElements();
+    };
 
-	var menu = document.getElementById("menu-header");
-	var name = document.getElementById("name");
-	var content = document.getElementById("content");
-	var topElements = [menu, name];
-	var firstClick = true;
-	var menuItens = document.getElementsByClassName("menu-item");
-	var actualActive = "header";
+    var trackElements = function () {
+        for (var i = 0; i < links.length; i++) {
+            links[i].addEventListener('mousedown', trackLink);
+        }
+    };
 
-	for (var i = 0; i < menuItens.length; i++) {
-		var menuItem = menuItens[i];
+    var trackLink = function (event) {
+        var target = event.target;
+        var eventParameters = getEventParameters(target);
 
-		menuItem.addEventListener("click", function() {
-			var newActive = this.getAttribute("data-menu");
-			sectionChange(actualActive, newActive);
+        fireEvent(eventParameters.category, eventParameters.action);
+    };
 
-		});
-	}
+    var getEventParameters = function (target) {
+        var title = target.title;
+
+        return {
+            'category': title.split('|')[0],
+            'action':title.split('|')[1]
+        };
+    };
+
+    var isDebug = function (search) {
+        return search.indexOf('debug') >= 0;
+    };
+
+    var gaFunction = function (){
+        win.ga.q = win.ga.q || [];
+        win.ga.q.push(arguments);
+    };
+
+    var getElements = function (tagName) {
+        return doc.getElementsByTagName(tagName);
+    };
+
+    var doc = document;
+    var win = window;
+    var bounce = isBounce();
+    var links = getElements('a');
+    var gaSrc = '//www.google-analytics.com/analytics.js';
+
+    if (!isDebug(doc.location.search)) {
+        loadGoogleAnalytics();
+    }
+})();
+(function nav () {
+    var doc = document;
+
+    var getElement = function (id) {
+        return doc.getElementById(id);
+    };
+
+    var getElements = function (className) {
+        return doc.getElementsByClassName(className);
+    };
+
+    var menu = getElement('menu-header');
+    var name = getElement('name');
+    var content = getElement('content');
+    var menuItens = getElements('menu-item');
+    var activeContent = 'header-section';
+    var firstClick = true;
+
+    var topElements = {
+        'menu': menu,
+        'name': name
+    };
+
+    var isHeader = function (contentSection) {
+        return (contentSection === 'header-section' && !firstClick);
+    };
+
+    var sectionChange = function(oldContent, newContent) {
+        return compareEqualSection(oldContent, newContent);
+    };
+
+    var compareEqualSection = function (oldContent, newContent) {
+        if (oldContent === newContent) {
+            return;
+        }
+
+        return isFirstClick(oldContent, newContent);
+    };
+
+    var isFirstClick = function (oldContent, newContent) {
+        if (firstClick) {
+            forEachObject(topElements, setContentPage);
+            return changeSection(oldContent, newContent);
+        }
+
+        return isHeaderClick(oldContent, newContent);
+    };
+
+    var isHeaderClick = function (oldContent, newContent) {
+        if (isHeader(newContent)) {
+            forEachObject(topElements, setFirstPage);
+        }
+
+        return changeSection(oldContent, newContent);
+    };
+
+    var changeSection = function (oldContent, newContent) {
+        activeContent = newContent;
+
+        newContent = getElement(newContent);
+        oldContent = getElement(oldContent);
+
+        addClass(oldContent, 'fadeOutUp');
+
+        var setTimeOutremoveFadeInClassFromNewSecion = function () {
+            removeFadeClass(newContent);
+        };
+
+        var setTimeOutChangeSection = function () {
+            fadeOut(oldContent);
+            fadeIn(newContent);
+
+            setTimeout(setTimeOutremoveFadeInClassFromNewSecion, 1000);
+        };
+
+        setTimeout(setTimeOutChangeSection, 1000);
+    };
+
+    var fadeIn = function (element, topElement) {
+        removeClass(element, 'hidden-element');
+        addClass(element, 'fadeInUp');
+
+        if (typeof topElement === "string") {
+            addClass(element, 'top-' + topElement);
+        }
+
+        removeFadeClassCall(element);
+    };
+
+    var fadeOut = function (element, topElement) {
+        addClass(element, 'fadeOutUp');
+        addClass(element, 'hidden-element');
+
+        removeFadeClassCall(element);
+    };
+
+    var removeFadeClassCall = function (element) {
+        var passArgument = function () {
+            removeFadeClass(element);
+        };
+
+        setTimeout(passArgument, 1000);
+    };
+
+    var removeFadeClass = function (element) {
+        removeClass(element, 'fadeInUp');
+        removeClass(element, 'fadeOutUp');
+    };
+
+    var setContentPage = function (topElements, el) {
+        var element = topElements[el];
+        firstClick = false;
+
+        fadeIn(element, el);
+        content.appendChild(element);
+    };
+
+    var setFirstPage = function (topElements, el) {
+        var container = getElement(el + '-container');
+        var element = topElements[el];
+        firstClick = true;
+
+        removeFadeClass(element);
+        removeClass(element, 'top-' + el);
+
+        container.appendChild(element);
+    };
+
+    var forEachObject = function (obj, fn) {
+        for (var key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                fn(obj, key);
+            }
+        }
+    };
+
+    var addClass = function (element, className) {
+        element.classList.add(className);
+    };
+
+    var removeClass = function (element, className) {
+        element.classList.remove(className);
+    };
+
+    var fireSectionChange = function (event) {
+        var target = event.target;
+        var newContent = target.getAttribute('data-menu');
+
+        sectionChange(activeContent, newContent);
+    };
+
+    var setTimeOutRemoveFadeInClassFromHeader = function () {
+        var header = getElement('header-section');
+        removeFadeClass(header);
+    };
+
+
+    for (var i = 0; i < menuItens.length; i++) {
+        var menuItem = menuItens[i];
+        menuItem.addEventListener('click', fireSectionChange);
+    }
+
+    setTimeout(setTimeOutRemoveFadeInClassFromHeader, 1000);
 
 })();
+(function formspree() {
+	var doc = document;
+	var getElement = function (id) {
+		return doc.getElementById(id);
+	};
+
+	getElement("name-contact-form").addEventListener("change", function() {
+		getElement("subject-contact-form").setAttribute("value", "[Contato Portfólio] " + this.value);
+	});
+})();
+
