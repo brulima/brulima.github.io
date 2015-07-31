@@ -280,4 +280,3 @@
 		getElement("subject-contact-form").setAttribute("value", "[Contato Portfólio] " + this.value);
 	});
 })();
-
