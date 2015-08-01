@@ -107,6 +107,9 @@ a {
 .portfolio #portfolio-shotapp {
 	background-image: url(../images/portfolio/shotapp.jpg);
 }
+.portfolio #portfolio-bestatic {
+	background-image: url(../images/portfolio/bestatic.jpg);
+}
 .top-menu {
 	position: fixed;
 	top: 10%;
