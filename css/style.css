@@ -13,6 +13,14 @@ body {
 	font-family: 'Open Sans', sans-serif;
 	color: rgb(40, 40, 40);
 }
+::selection {
+  background: rgb(255, 42, 79);
+  color: white;
+}
+::-moz-selection {
+  background: rgb(255, 42, 79);
+  color: white;
+}
 a:link {
 	text-decoration: none;
 }
@@ -121,11 +129,11 @@ a {
     font-size: 1.2em;
 }
 .fadeInUp {
-  -webkit-animation: fadeInUp 1s;
+  -webkit-animation: -webkit-fadeInUp 1s;
   animation: fadeInUp 1s;
 }
 .fadeOutUp {
-  -webkit-animation: fadeOutUp 1s;
+  -webkit-animation: -webkit-fadeOutUp 1s;
   animation: fadeOutUp 1s;
 }
 .hidden-element {
@@ -313,7 +321,7 @@ form input[type="submit"] {
 }
 
 /* Animations */
-@-webkit-keyframes fadeInUp {
+@-webkit-keyframes -webkit-fadeInUp {
   0% {
     opacity: 0;
     -webkit-transform: translate3d(0, 100%, 0);
@@ -341,7 +349,7 @@ form input[type="submit"] {
   }
 }
 
-@-webkit-keyframes fadeOutUp {
+@-webkit-keyframes -webkit-fadeOutUp {
   0% {
     opacity: 1;
   }
