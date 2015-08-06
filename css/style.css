@@ -119,14 +119,16 @@ a {
 	background-image: url(../images/portfolio/bestatic.jpg);
 }
 .top-menu {
-	position: fixed;
-	top: 10%;
+    position: absolute;
+    top: 0;
+    margin-top: 33px;
 }
 .top-name {
-    position: fixed;
-    top: 11%;
     right: 10%;
     font-size: 1.2em;
+    position: absolute;
+    top: 0;
+    margin-top: 43px;
 }
 .fadeInUp {
   -webkit-animation: -webkit-fadeInUp 1s;
