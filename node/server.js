@@ -6,7 +6,7 @@ var fs      = require('fs');
 app.get('/', function (req, res) {
 	var home = fs.readFileSync('../index.html', 'utf-8');
 	res.set('Content-Type', 'text/html');
-	res.send(home.replace('<base href="http://brulima.github.io/motocatt/">', '<base href="http://homolog.com.br:8080/">'));
+	res.send(home);
 });
 
 app.get('**.html', function (req, res) {
